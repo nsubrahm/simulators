@@ -1,0 +1,14 @@
+version: '3.5'
+
+services:
+  simulator-rest:
+    container_name: simulator-rest
+    image: nsubrahm/simulator-rest:v0.0.0
+    env_file:
+      - rest.env
+    networks:
+      - kafkastreams-network
+
+networks:
+  kafkastreams-network:
+    name: ks
