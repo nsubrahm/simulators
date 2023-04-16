@@ -1,0 +1,15 @@
+version: '3.5'
+
+services:
+  simulator-kpub:
+    container_name: simulator-kpub
+    image: nsubrahm/simulator-kpub:v0.0.0
+    env_file:
+      - rest.env
+      - sasl-auth.env
+    networks:
+      - kafkastreams-network
+
+networks:
+  kafkastreams-network:
+    name: ks

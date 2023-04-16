@@ -18,11 +18,11 @@ Status: 202. Message: 284eb8db-3bda-4c7c-a1b5-1d70df7ab8a8
 
 ## Configuration
 
-To get started, edit the `rest.env` file with the following configuration parameters.
+Edit the `rest.env` file with the following configuration parameters, if required
 
 The following parameters _maybe_ changed.
 
-| Variable name  | Description                                                    | Example               |
+| Variable name  | Description                                                    | Default               |
 | -------------- | -------------------------------------------------------------- | --------------------- |
 | `FREQUENCY`    | The rate at which messages should be published in miliseconds. | `10000`               |
 | `BASE_URL`     | The URL where the `cleaner` service is running.                | `http://cleaner:8080` |
