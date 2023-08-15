@@ -25,7 +25,7 @@ function buildPayload(options) {
       { key: 'temperature', value: generateRandomValues({ lo: 20, hi: 60 }) },
       { key: 'current', value: generateRandomValues({ lo: 100, hi: 1000 }) },
       { key: 'vibration', value: generateRandomValues({ lo: -10, hi: 10 }) },
-      { key: 'voltage', value: generateRandomValues({ lo: 1000, hi: 10000 }) },
+      { key: 'voltage', value: generateRandomValues({ lo: 100, hi: 10000 }) },
     ],
     alarms: [
       {
