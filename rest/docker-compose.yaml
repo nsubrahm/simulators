@@ -6,3 +6,10 @@ services:
     image: nsubrahm/restsim:v0.0.0
     env_file:
       - rest.env
+    networks:
+      - broker
+
+networks:
+  broker:
+    external: true
+    name: broker
