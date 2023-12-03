@@ -3,7 +3,7 @@ version: '3.5'
 services:
   simulator-rest:
     container_name: restsim
-    image: nsubrahm/restsim:v0.0.0
+    image: nsubrahm/restsim:latest
     env_file:
       - rest.env
     networks:
