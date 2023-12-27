@@ -18,7 +18,8 @@ function buildPayload(options) {
   let payload = {
     meta: {
       ts: ts,
-      id: msgId
+      id: msgId,
+      type: "data"
     },
     data: [
       { key: 'rpm', value: generateRandomValues({ lo: 1000, hi: 10000 }) },
