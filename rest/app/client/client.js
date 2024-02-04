@@ -22,10 +22,10 @@ function buildPayload(options) {
       type: "data"
     },
     data: [
-      { key: 'rpm', value: generateRandomValues({ lo: 1000, hi: 10000 }) },
-      { key: 'temperature', value: generateRandomValues({ lo: 20, hi: 60 }) },
+      { key: 'rpm', value: generateRandomValues({ lo: 100, hi: 10000 }) },
+      { key: 'temperature', value: generateRandomValues({ lo: 10, hi: 100 }) },
       { key: 'current', value: generateRandomValues({ lo: 100, hi: 1000 }) },
-      { key: 'vibration', value: generateRandomValues({ lo: -10, hi: 10 }) },
+      { key: 'vibration', value: generateRandomValues({ lo: -90, hi: 90 }) },
       { key: 'voltage', value: generateRandomValues({ lo: 100, hi: 10000 }) },
     ],
     alarms: [
