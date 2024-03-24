@@ -22,11 +22,10 @@ function buildPayload(options) {
       type: "data"
     },
     data: [
-      { key: 'spindleLoad', value: generateRandomValues({ lo: 100, hi: 10000 }) },
+      { key: 'spindleLoad', value: generateRandomValues({ lo: 10, hi: 1000 }) },
       { key: 'spindleTemperature', value: generateRandomValues({ lo: 10, hi: 100 }) },
-      { key: 'spindleSpeed', value: generateRandomValues({ lo: 100, hi: 1000 }) },
-    ],
-    alarms: []
+      { key: 'spindleSpeed', value: generateRandomValues({ lo: 1000, hi: 10000 }) },
+    ]
   }
   return payload
 }
@@ -39,7 +38,7 @@ function simulate(options) {
       })
       .catch((error) => {
         if (error.response) {
-          console.log(`Response error. Status: ${error.response.status}. Error: ${error.message}`)
+          console.log(`Response error. Status: ${error.response.status}. Error: ${error.response.data.msg}`)
           clearInterval(simulationInterval)
         } else if (error.request) {
           console.log(`Request failed. Error: ${error.message}`)
