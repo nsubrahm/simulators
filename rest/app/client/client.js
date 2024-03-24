@@ -22,22 +22,11 @@ function buildPayload(options) {
       type: "data"
     },
     data: [
-      { key: 'rpm', value: generateRandomValues({ lo: 100, hi: 10000 }) },
-      { key: 'temperature', value: generateRandomValues({ lo: 10, hi: 100 }) },
-      { key: 'current', value: generateRandomValues({ lo: 100, hi: 1000 }) },
-      { key: 'vibration', value: generateRandomValues({ lo: -90, hi: 90 }) },
-      { key: 'voltage', value: generateRandomValues({ lo: 100, hi: 10000 }) },
+      { key: 'spindleLoad', value: generateRandomValues({ lo: 100, hi: 10000 }) },
+      { key: 'spindleTemperature', value: generateRandomValues({ lo: 10, hi: 100 }) },
+      { key: 'spindleSpeed', value: generateRandomValues({ lo: 100, hi: 1000 }) },
     ],
-    alarms: [
-      {
-        key: "OIL_LEVEL",
-        value: "LOW"
-      },
-      {
-        key: "COOLANT_LEVEL",
-        value: "LOW"
-      },
-    ]
+    alarms: []
   }
   return payload
 }
