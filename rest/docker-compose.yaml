@@ -3,7 +3,7 @@ version: '3.5'
 services:
   simulator-rest:
     container_name: restsim
-    image: nsubrahm/restsim:latest
+    image: nsubrahm/restsim:wimera
     env_file:
       - rest.env
     networks:
