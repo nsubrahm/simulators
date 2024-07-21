@@ -6,6 +6,8 @@ const {
 } = require('uuid');
 
 const FREQUENCY = process.env.FREQUENCY || 1000;
+const LO_FACTOR = 0.1;
+const HI_FACTOR = 100;
 
 function generateRandomValues(options) {
   return parseFloat((crypto.randomInt(options.lo, options.hi)).toPrecision(6))
@@ -22,9 +24,9 @@ function buildPayload(options) {
       type: "data"
     },
     data: [
-      { key: 'spindleLoad', value: generateRandomValues({ lo: 10, hi: 1000 }) },
-      { key: 'spindleTemperature', value: generateRandomValues({ lo: 10, hi: 100 }) },
-      { key: 'spindleSpeed', value: generateRandomValues({ lo: 1000, hi: 10000 }) },
+      { key: 'spindleLoad', value: generateRandomValues({ lo: LO_FACTOR * 10, hi: HI_FACTOR * 100 }) },
+      { key: 'spindleTemperature', value: generateRandomValues({ lo: LO_FACTOR * 10, hi: HI_FACTOR * 90 }) },
+      { key: 'spindleSpeed', value: generateRandomValues({ lo: LO_FACTOR * 1000, hi: HI_FACTOR * 1000 }) },
     ]
   }
   return payload
