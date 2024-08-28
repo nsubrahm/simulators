@@ -132,7 +132,7 @@ class CNCDataGenerator:
             }
             for key, value in self.parameters.items()
         ]
-        return json.dumps(data_ranges, indent=2)
+        return json.dumps(data_ranges)
     
     def set_parameter_range(self, parameter_name, baseline, min_value, max_value, unit):
         if parameter_name in self.parameters:

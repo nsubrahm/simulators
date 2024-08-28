@@ -27,6 +27,7 @@ def main():
                                      max_abnormal_data_percent=config['max_abnormal_data_percent'], 
                                      band=config['band'],
                                      tz=config['tz'])
+    print(cnc_generator.get_baseline_min_max())
     publish_payload = PublishPayload(config['api_endpoint'])
     
     # Publish to HTTP endpoint in an infinite loop
