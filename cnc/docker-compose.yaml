@@ -1,0 +1,12 @@
+services:
+  cnc:
+    image: nsubrahm/cnc:latest
+    env_file:
+      - config.env
+    networks:
+      - broker
+
+networks:
+  broker:
+    external: true
+    name: broker
