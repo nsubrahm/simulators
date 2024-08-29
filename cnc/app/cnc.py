@@ -6,9 +6,9 @@ import json
 import pytz
 
 class CNCDataGenerator:
-    def __init__(self, frequency=1000, total_hours=720, max_abnormal_duration_percent=0.1, max_abnormal_data_percent=20, band=0.9, tz="Asia/Kolkata"):
+    def __init__(self, frequency=1000, total_mins=720, max_abnormal_duration_percent=0.1, max_abnormal_data_percent=20, band=0.9, tz="Asia/Kolkata"):
         self.frequency = int(round(frequency/1000,0))
-        self.total_hours = total_hours
+        self.total_mins = total_mins
         self.max_abnormal_duration_percent = max_abnormal_duration_percent
         self.max_abnormal_data_percent = max_abnormal_data_percent
         self.band = band
@@ -16,8 +16,8 @@ class CNCDataGenerator:
         self.timezone = pytz.timezone(tz)
         self.start_time = datetime.now(self.timezone)
         self.current_time = self.start_time
-        self.end_time = self.start_time + timedelta(hours=total_hours)
-        self.total_rows = int(total_hours * 3600 // self.frequency)
+        self.end_time = self.start_time + timedelta(hours=total_mins)
+        self.total_rows = int(total_mins * 3600 // self.frequency)
         self.abnormal_event_indices = self._generate_abnormal_indices()
         self.row_counter = 0
         
