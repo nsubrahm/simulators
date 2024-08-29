@@ -12,7 +12,7 @@ def main():
     #Log messages.
     print(f"Simulation of CNC machine data capture started.")
     print(f"Frequency: {config['frequency']}")
-    print(f"Total hours: {config['total_hours']}")
+    print(f"Total hours: {config['total_mins']}")
     print(f"Max abnormal duration percent: {config['max_abnormal_duration_percent']}")
     print(f"Max abnormal data percent: {config['max_abnormal_data_percent']}")
     print(f"Band: {config['band']}")
@@ -22,7 +22,7 @@ def main():
     
     # Create objects for publish and cnc
     cnc_generator = CNCDataGenerator(frequency=config['frequency'], 
-                                     total_hours=config['total_hours'], 
+                                     total_mins=config['total_mins'], 
                                      max_abnormal_duration_percent=config['max_abnormal_data_percent'], 
                                      max_abnormal_data_percent=config['max_abnormal_data_percent'], 
                                      band=config['band'],
