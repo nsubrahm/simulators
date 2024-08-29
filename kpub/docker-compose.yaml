@@ -1,5 +1,3 @@
-version: '3.5'
-
 services:
   simulator-kpub:
     container_name: simulator-kpub

@@ -6,6 +6,8 @@ const {
 } = require('uuid');
 
 const FREQUENCY = process.env.FREQUENCY || 1000;
+const LO_FACTOR = 0.1;
+const HI_FACTOR = 10;
 
 function generateRandomValues(options) {
   return parseFloat((crypto.randomInt(options.lo, options.hi)).toPrecision(6))
@@ -22,21 +24,9 @@ function buildPayload(options) {
       type: "data"
     },
     data: [
-      { key: 'rpm', value: generateRandomValues({ lo: 100, hi: 10000 }) },
-      { key: 'temperature', value: generateRandomValues({ lo: 10, hi: 100 }) },
-      { key: 'current', value: generateRandomValues({ lo: 100, hi: 1000 }) },
-      { key: 'vibration', value: generateRandomValues({ lo: -90, hi: 90 }) },
-      { key: 'voltage', value: generateRandomValues({ lo: 100, hi: 10000 }) },
-    ],
-    alarms: [
-      {
-        key: "OIL_LEVEL",
-        value: "LOW"
-      },
-      {
-        key: "COOLANT_LEVEL",
-        value: "LOW"
-      },
+      { key: 'spindleLoad', value: generateRandomValues({ lo: LO_FACTOR * 10, hi: HI_FACTOR * 10 }) },
+      { key: 'spindleTemperature', value: generateRandomValues({ lo: LO_FACTOR * 10, hi: HI_FACTOR * 10 }) },
+      { key: 'spindleSpeed', value: generateRandomValues({ lo: LO_FACTOR * 1000, hi: HI_FACTOR * 1000 }) },
     ]
   }
   return payload
@@ -50,7 +40,7 @@ function simulate(options) {
       })
       .catch((error) => {
         if (error.response) {
-          console.log(`Response error. Status: ${error.response.status}. Error: ${error.message}`)
+          console.log(`Response error. Status: ${error.response.status}. Error: ${error.response.data.msg}`)
           clearInterval(simulationInterval)
         } else if (error.request) {
           console.log(`Request failed. Error: ${error.message}`)

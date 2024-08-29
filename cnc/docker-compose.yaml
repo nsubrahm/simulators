@@ -1,9 +1,8 @@
 services:
-  simulator-rest:
-    container_name: restsim
-    image: nsubrahm/restsim:wimera
+  cnc:
+    image: nsubrahm/cnc:latest
     env_file:
-      - rest.env
+      - config.env
     networks:
       - broker
 

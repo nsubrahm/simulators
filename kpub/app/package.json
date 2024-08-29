@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "kafkajs": "^2.2.0",
+    "kpub": "file:",
     "moment-timezone": "^0.5.37",
     "uuid": "^9.0.0"
   }
