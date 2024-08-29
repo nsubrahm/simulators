@@ -28,7 +28,7 @@ class CNCDataGenerator:
             "spindleTorque": {"baseline": 5, "min": 0, "max": 50, "unit": "Nm"},
             "cuttingForce": {"baseline": 300, "min": 0, "max": 2000, "unit": "N"},
             "vibration": {"baseline": 0.5, "min": 0, "max": 5, "unit": "m/s²"},
-            "temperature": {"baseline": 60, "min": -40, "max": 200, "unit": "°C"},
+            "spindleTemperature": {"baseline": 60, "min": -40, "max": 200, "unit": "°C"},
             "wearCompensation": {"baseline": 0.1, "min": 0, "max": 1, "unit": "mm"},
             "cycleTime": {"baseline": 60, "min": 1, "max": 3600, "unit": "s"}
         }
@@ -47,7 +47,7 @@ class CNCDataGenerator:
             spindle_torque = np.random.uniform(params['spindleTorque']['min'], params['spindleTorque']['max'])
             cutting_force = np.random.uniform(params['cuttingForce']['min'], params['cuttingForce']['max'])
             vibration = np.random.uniform(params['vibration']['min'], params['vibration']['max'])
-            temperature = np.random.uniform(params['temperature']['min'], params['temperature']['max'])
+            spindleTemperature = np.random.uniform(params['spindleTemperature']['min'], params['spindleTemperature']['max'])
             wear_compensation = np.random.uniform(params['wearCompensation']['min'], params['wearCompensation']['max'])
             cycle_time = np.random.uniform(params['cycleTime']['min'], params['cycleTime']['max'])
 
@@ -57,7 +57,7 @@ class CNCDataGenerator:
             spindle_torque = np.random.uniform(params['spindleTorque']['min'] * (1 - self.band), params['spindleTorque']['max'] * (1 + self.band))
             cutting_force = np.random.uniform(params['cuttingForce']['min'] * (1 - self.band), params['cuttingForce']['max'] * (1 + self.band))
             vibration = np.random.uniform(params['vibration']['min'] * (1 - self.band), params['vibration']['max'] * (1 + self.band))
-            temperature = np.random.uniform(params['temperature']['min'] * (1 - self.band), params['temperature']['max'] * (1 + self.band))
+            spindleTemperature = np.random.uniform(params['spindleTemperature']['min'] * (1 - self.band), params['spindleTemperature']['max'] * (1 + self.band))
             wear_compensation = np.random.uniform(params['wearCompensation']['min'] * (1 - self.band), params['wearCompensation']['max'] * (1 + self.band))
             cycle_time = np.random.uniform(params['cycleTime']['min'] * (1 - self.band), params['cycleTime']['max'] * (1 + self.band))
 
@@ -70,7 +70,7 @@ class CNCDataGenerator:
             "spindleTorque": round(spindle_torque, 2),
             "cuttingForce": round(cutting_force, 2),
             "vibration": round(vibration, 2),
-            "temperature": round(temperature, 2),
+            "spindleTemperature": round(spindleTemperature, 2),
             "wearCompensation": round(wear_compensation, 2),
             "cycleTime": round(cycle_time, 2),
             "ts": self.current_time.strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3]
