@@ -1,5 +1,5 @@
 const simulator = require('./client/client')
-const randomString = require('randomString')
+const randomString = require('randomstring')
 
 const MQTT_BROKER = process.env.MQTT_BROKER || 'mqtt://test.mosquitto.org:1883'
 const MQTT_CLIENT_ID = process.env.MQTT_CLIENT_ID || randomString.generate({ length: 12, charset: 'alphabetic' });
