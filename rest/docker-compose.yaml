@@ -1,7 +1,7 @@
 services:
   simulator-rest:
     container_name: restsim
-    image: nsubrahm/restsim:wimera
+    image: nsubrahm/restsim:main
     env_file:
       - rest.env
     networks:

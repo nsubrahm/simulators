@@ -9,6 +9,12 @@ const FREQUENCY = process.env.FREQUENCY || 1000;
 const LO_FACTOR = 0.1;
 const HI_FACTOR = 10;
 
+const safeRanges = {
+  spindleLoad: { lo: 0, hi: 10 },
+  spindleTemperature: { lo: 10, hi: 70 },
+  spindleSpeed: { lo: 0, hi: 8000 }
+}
+
 function generateRandomValues(options) {
   return parseFloat((crypto.randomInt(options.lo, options.hi)).toPrecision(6))
 }
@@ -24,9 +30,9 @@ function buildPayload(options) {
       type: "data"
     },
     data: [
-      { key: 'spindleLoad', value: generateRandomValues({ lo: LO_FACTOR * 10, hi: HI_FACTOR * 10 }) },
-      { key: 'spindleTemperature', value: generateRandomValues({ lo: LO_FACTOR * 10, hi: HI_FACTOR * 10 }) },
-      { key: 'spindleSpeed', value: generateRandomValues({ lo: LO_FACTOR * 1000, hi: HI_FACTOR * 1000 }) },
+      { key: 'spindleLoad', value: generateRandomValues({ lo: LO_FACTOR * safeRanges.spindleLoad.lo, hi: HI_FACTOR * safeRanges.spindleLoad.hi }) },
+      { key: 'spindleTemperature', value: generateRandomValues({ lo: LO_FACTOR * safeRanges.spindleTemperature.lo, hi: HI_FACTOR * safeRanges.spindleTemperature.hi }) },
+      { key: 'spindleSpeed', value: generateRandomValues({ lo: LO_FACTOR * safeRanges.spindleSpeed.lo, hi: HI_FACTOR * safeRanges.spindleSpeed.hi }) },
     ]
   }
   return payload
