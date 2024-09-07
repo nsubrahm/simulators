@@ -1,6 +1,6 @@
 services:
   simulator-mqtt:
     container_name: mqttsim
-    image: nsubrahm/mqttsim:main
+    image: nsubrahm/mqttsim:latest
     env_file:
       - mqtt.env

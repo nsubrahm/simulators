@@ -5,7 +5,7 @@ class MqttPublisher {
   constructor(options) {
     this.brokerUrl = options.MQTT_BROKER;
     this.topic = options.MQTT_TOPIC;
-    this.client = mqtt.connect(this.brokerUrl, options);
+    this.client = mqtt.connect(this.brokerUrl, {clientId: options.clientId})
 
     // Handle connection
     this.client.on('connect', () => {
