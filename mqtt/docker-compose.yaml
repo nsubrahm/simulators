@@ -4,3 +4,10 @@ services:
     image: nsubrahm/mqttsim:latest
     env_file:
       - mqtt.env
+    networks:
+      - mitra
+
+networks:
+  mitra:
+    external: true
+    name: mitra
