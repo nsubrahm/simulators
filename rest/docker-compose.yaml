@@ -8,6 +8,6 @@ services:
       - mitra
 
 networks:
-  broker:
+  mitra:
     external: true
     name: mitra
