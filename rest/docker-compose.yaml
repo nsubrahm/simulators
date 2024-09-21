@@ -1,13 +1,13 @@
 services:
   simulator-rest:
     container_name: restsim
-    image: nsubrahm/restsim:main
+    image: nsubrahm/restsim:latest
     env_file:
       - rest.env
     networks:
-      - broker
+      - mitra
 
 networks:
   broker:
     external: true
-    name: broker
+    name: mitra
