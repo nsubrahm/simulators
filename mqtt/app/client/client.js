@@ -6,8 +6,8 @@ const {
   v4: uuidv4,
 } = require('uuid');
 
-const LO_FACTOR = 0.1;
-const HI_FACTOR = 10;
+const LO_FACTOR = 0.2;
+const HI_FACTOR = 1.2;
 
 const safeRanges = {
   spindleLoad: { lo: 0, hi: 10 },
@@ -38,7 +38,11 @@ function buildPayload(options) {
       { key: 'spindleLoad', value: generateRandomValues({ lo: LO_FACTOR * safeRanges.spindleLoad.lo, hi: HI_FACTOR * safeRanges.spindleLoad.hi }) },
       { key: 'spindleTemperature', value: generateRandomValues({ lo: LO_FACTOR * safeRanges.spindleTemperature.lo, hi: HI_FACTOR * safeRanges.spindleTemperature.hi }) },
       { key: 'spindleSpeed', value: generateRandomValues({ lo: LO_FACTOR * safeRanges.spindleSpeed.lo, hi: HI_FACTOR * safeRanges.spindleSpeed.hi }) },
-    ]
+    ],
+    alarms: [
+      { key: "COOLANT_LEVEL", value: "LOW" },
+      { key: "LUBRICANT_LEVEL", value: "FULL" }
+    ]    
   }
   return payload
 }
