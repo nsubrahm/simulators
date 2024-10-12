@@ -6,13 +6,11 @@ const {
 } = require('uuid');
 
 const FREQUENCY = process.env.FREQUENCY || 1000;
-const LO_FACTOR = 0.8;
-const HI_FACTOR = 1.2;
 
-const safeRanges = {
-  spindleLoad: { lo: 0, hi: 10 },
-  spindleTemperature: { lo: 10, hi: 70 },
-  spindleSpeed: { lo: 0, hi: 8000 }
+const ranges = {
+  spindleLoad: { lo: 0, hi: 50 },
+  spindleTemperature: { lo: 1, hi: 150 },
+  spindleSpeed: { lo: 0, hi: 20000 }
 }
 
 function generateRandomValues(options) {
@@ -30,9 +28,9 @@ function buildPayload(options) {
       type: "data"
     },
     data: [
-      { key: 'spindleLoad', value: generateRandomValues({ lo: LO_FACTOR * safeRanges.spindleLoad.lo, hi: HI_FACTOR * safeRanges.spindleLoad.hi }) },
-      { key: 'spindleTemperature', value: generateRandomValues({ lo: LO_FACTOR * safeRanges.spindleTemperature.lo, hi: HI_FACTOR * safeRanges.spindleTemperature.hi }) },
-      { key: 'spindleSpeed', value: generateRandomValues({ lo: LO_FACTOR * safeRanges.spindleSpeed.lo, hi: HI_FACTOR * safeRanges.spindleSpeed.hi }) },
+      { key: 'spindleLoad', value: generateRandomValues({ lo: ranges.spindleLoad.lo, hi: ranges.spindleLoad.hi }) },
+      { key: 'spindleTemperature', value: generateRandomValues({ lo: ranges.spindleTemperature.lo, hi: ranges.spindleTemperature.hi }) },
+      { key: 'spindleSpeed', value: generateRandomValues({ lo: ranges.spindleSpeed.lo, hi: ranges.spindleSpeed.hi }) },
     ],
     alarms: [
       { key: "COOLANT_LEVEL", value: "LOW" },
