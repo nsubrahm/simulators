@@ -34,7 +34,8 @@ function buildPayload(options) {
     ],
     alarms: [
       { key: "COOLANT_LEVEL", value: "LOW" },
-      { key: "LUBRICANT_LEVEL", value: "FULL" }
+      { key: "LUBRICANT_LEVEL", value: "FULL" },
+      { key: "OIL_PRESSURE", value: "OK" }
     ]
   }
   return payload
