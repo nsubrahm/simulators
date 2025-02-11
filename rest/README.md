@@ -1,6 +1,11 @@
 # Introduction
 
-This project is a HTTP REST client to publish valid payloads to `payload` service.
+This project is a HTTP REST client to publish valid payloads to `httpin` service.
+
+- [Introduction](#introduction)
+  - [Getting started](#getting-started)
+  - [Configuration](#configuration)
+  - [Running outside the network](#running-outside-the-network)
 
 ## Getting started
 
@@ -22,14 +27,18 @@ Edit the `rest.env` file with the following configuration parameters, if require
 
 The following parameters _maybe_ changed.
 
-| Variable name  | Description                                                    | Default               |
-| -------------- | -------------------------------------------------------------- | --------------------- |
-| `FREQUENCY`    | The rate at which messages should be published in miliseconds. | `10000`               |
-| `BASE_URL`     | The URL where the `payload` service is running.                | `http://payload:8080` |
-| `API_ENDPOINT` | The end-point where payload is to be published.                | `/data`               |
+| Variable name  | Description                                                    | Default              |
+| -------------- | -------------------------------------------------------------- | -------------------- |
+| `FREQUENCY`    | The rate at which messages should be published in miliseconds. | `10000`              |
+| `BASE_URL`     | The URL where the `httpin` service is running.                 | `http://httpin:8080` |
+| `API_ENDPOINT` | The end-point where payload is to be published.                | `/data`              |
 
 The following parameters _must not_ be changed.
 
 | Variable name | Description                                     | Example        |
 | ------------- | ----------------------------------------------- | -------------- |
 | `TZ`          | The time zone where the application is running. | `Asia/Kolakta` |
+
+## Running outside the network
+
+The application runs in a Docker network named `mitra`. To send data from outside this network, configure the `BASE_URL` to `http://host.docker.internal:80`. For example, this simulator can be run as `docker run --name restsim --rm --env-file rest.env nsubrahm/restsim:latest`.
