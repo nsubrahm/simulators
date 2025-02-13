@@ -49,7 +49,6 @@ function simulate(options) {
       })
       .catch((error) => {
         if (error.response) {
-          console.log(error.response);
           console.log(`Response error. Status: ${error.response.status}. Error: ${error.response.data.msg}`);
           clearInterval(simulationInterval);
         } else if (error.request) {
