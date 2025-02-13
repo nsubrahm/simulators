@@ -45,20 +45,20 @@ function simulate(options) {
   let simulationInterval = setInterval(() => {
     axios.post(`${options.BASE_URL}${options.API_ENDPOINT}`, buildPayload({ TZ: options.TZ }))
       .then((response) => {
-        console.log(`Status: ${response.status}. Message: ${response.msg}`)
+        console.log(`Status: ${response.status}. Message: ${response.data.msg}`)
       })
       .catch((error) => {
         if (error.response) {
-          console.log(error.response)
-          console.log(`Response error. Status: ${error.response.status}. Error: ${error.response.msg}`)
-          clearInterval(simulationInterval)
+          console.log(error.response);
+          console.log(`Response error. Status: ${error.response.status}. Error: ${error.response.data.msg}`);
+          clearInterval(simulationInterval);
         } else if (error.request) {
-          console.log(`Request failed. Error: ${error.message}`)
-          clearInterval(simulationInterval)
+          console.log(`Request failed. Error: ${error.message}`);
+          clearInterval(simulationInterval);
         }
-        console.log(`Stopped simulation.`)
-      })
-  }, FREQUENCY)
+        console.log(`Stopped simulation.`);
+      });
+  }, FREQUENCY);
 }
 
 module.exports = {
