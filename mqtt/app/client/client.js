@@ -1,10 +1,11 @@
 const crypto = require("crypto")
 const mqttPub = require("./mqttPub")
-
 const mom = require('moment-timezone')
 const {
   v4: uuidv4,
 } = require('uuid');
+
+const FREQUENCY = process.env.FREQUENCY || 1000;
 
 const ranges = {
   spindleLoad: { lo: 0, hi: 50 },
@@ -52,6 +53,7 @@ function simulate(options) {
       // Publish a message asynchronously
       let payload = JSON.stringify(buildPayload({TZ: options.TZ}));
       await mqttClient.publishMessageAsync(payload);
+      console.log(`Message published: ${payload.meta.id}`);
     } catch (error) {
       console.log(`MQTT publication error: ${error}`)
       clearInterval(simulationInterval)
