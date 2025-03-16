@@ -6,11 +6,14 @@ const {
 } = require('uuid');
 
 const FREQUENCY = process.env.FREQUENCY || 1000;
+const MACHINE_ID = process.env.MACHINE_ID || "m001";
 
 const ranges = {
   spindleLoad: { lo: 0, hi: 50 },
   spindleTemperature: { lo: 1, hi: 150 },
-  spindleSpeed: { lo: 0, hi: 20000 }
+  spindleSpeed: { lo: 0, hi: 20000 },
+  spindleMotorVoltage: { lo: 10, hi: 25 },
+  spindleMotorCurrent: { lo: 2, hi: 8 }
 }
 
 function generateRandomValues(options) {
@@ -31,11 +34,15 @@ function buildPayload(options) {
       { key: 'spindleLoad', value: generateRandomValues({ lo: ranges.spindleLoad.lo, hi: ranges.spindleLoad.hi }) },
       { key: 'spindleTemperature', value: generateRandomValues({ lo: ranges.spindleTemperature.lo, hi: ranges.spindleTemperature.hi }) },
       { key: 'spindleSpeed', value: generateRandomValues({ lo: ranges.spindleSpeed.lo, hi: ranges.spindleSpeed.hi }) },
+      { key: 'spindleMotorVoltage', value: generateRandomValues({ lo: ranges.spindleMotorVoltage.lo, hi: ranges.spindleMotorVoltage.hi }) },
+      { key: 'spindleMotorCurrent', value: generateRandomValues({ lo: ranges.spindleMotorCurrent.lo, hi: ranges.spindleMotorCurrent.hi }) }
     ],
     alarms: [
-      { key: "COOLANT_LEVEL", value: "LOW" },
-      { key: "LUBRICANT_LEVEL", value: "FULL" },
-      { key: "OIL_PRESSURE", value: "OK" }
+      { key: "COOLANT_LEVEL", value: ["LOW", "NORMAL", "HIGH"][Math.floor(Math.random() * 3)] },
+      { key: "OIL_LEVEL", value: ["LOW", "NORMAL", "HIGH"][Math.floor(Math.random() * 3)] },
+      { key: "POWER_STATUS", value: ["ON", "OFF", "STANDBY"][Math.floor(Math.random() * 3)] },
+      { key: "EMERGENCY_STOP", value: ["ACTIVE", "INACTIVE"][Math.floor(Math.random() * 2)] },
+      { key: "TOOL_WEAR", value: ["NORMAL", "WARN", "CRITICAL"][Math.floor(Math.random() * 3)] }
     ]
   }
   return payload
@@ -43,7 +50,7 @@ function buildPayload(options) {
 
 function simulate(options) {
   let simulationInterval = setInterval(() => {
-    axios.post(`${options.BASE_URL}${options.API_ENDPOINT}`, buildPayload({ TZ: options.TZ }))
+    axios.post(`${options.BASE_URL}${options.API_ENDPOINT}/${MACHINE_ID}`, buildPayload({ TZ: options.TZ }))
       .then((response) => {
         console.log(`Status: ${response.status}. Message: ${response.data.msg}`)
       })
