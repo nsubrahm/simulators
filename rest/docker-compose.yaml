@@ -4,10 +4,3 @@ services:
     image: nsubrahm/restsim:latest
     env_file:
       - rest.env
-    networks:
-      - mitra
-
-networks:
-  mitra:
-    external: true
-    name: mitra
