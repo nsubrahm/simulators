@@ -5,6 +5,7 @@ const API_ENDPOINT = process.env.API_ENDPOINT || '/data'
 const TZ = process.env.TZ || 'Asia/Kolkata';
 const ORG_ID = process.env.ORG_ID || `acme`;
 const MACHINE_ID = process.env.MACHINE_ID || "m001";
+const FREQUENCY = process.env.FREQUENCY || 1000;
 
 console.log(`Starting simulator for API end-point at: ${BASE_URL}${API_ENDPOINT}`)
 
@@ -13,5 +14,6 @@ simulator.simulate({
   BASE_URL: BASE_URL,
   API_ENDPOINT: API_ENDPOINT,
   ORG_ID: ORG_ID,
-  MACHINE_ID: MACHINE_ID
+  MACHINE_ID: MACHINE_ID,
+  FREQUENCY: FREQUENCY
 })
