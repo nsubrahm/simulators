@@ -65,10 +65,7 @@ data: [
     alarms: [
       { key: 'STATUS', value: generateMachineStatus() },
       { key: "COOLANT_LEVEL", value: ["LOW", "NORMAL", "HIGH"][Math.floor(Math.random() * 3)] },
-      { key: "OIL_LEVEL", value: ["LOW", "NORMAL", "HIGH"][Math.floor(Math.random() * 3)] },
-      { key: "POWER_STATUS", value: ["ON", "OFF", "STANDBY"][Math.floor(Math.random() * 3)] },
-      { key: "EMERGENCY_STOP", value: ["ACTIVE", "INACTIVE"][Math.floor(Math.random() * 2)] },
-      { key: "TOOL_WEAR", value: ["NORMAL", "WARN", "CRITICAL"][Math.floor(Math.random() * 3)] }
+      { key: "OIL_LEVEL", value: ["LOW", "NORMAL", "HIGH"][Math.floor(Math.random() * 3)] }
     ]
   }
   return payload
