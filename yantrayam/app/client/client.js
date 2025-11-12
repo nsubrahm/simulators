@@ -17,6 +17,13 @@ const {
   pf3: { lo: 0, hi: 1}
 }
 
+function generateEnergyValue(TZ, initialValue = 0) {
+  const startTime = mom().tz(TZ).startOf('minute'); // rounded to minute
+  const now = mom().tz(TZ);
+  const elapsedMinutes = now.diff(startTime, 'minutes');
+  return Math.floor(elapsedMinutes / 2) + initialValue;
+}
+
 function generatePartcount(TZ) {
   // Use current timestamp in the specified TZ as startTime
   const startTime = mom().tz(TZ).startOf('minute'); // rounded to minute
@@ -61,6 +68,8 @@ data: [
   { key: 'pf1', value: generateRandomValues(ranges.pf1) },
   { key: 'pf2', value: generateRandomValues(ranges.pf2) },
   { key: 'pf3', value: generateRandomValues(ranges.pf3) },
+  { key: 'energyImp', value: generateEnergyValue(options.TZ, 1000) },
+  { key: 'energyExp', value: generateEnergyValue(options.TZ, 1005) },
 ],
     alarms: [
       { key: 'STATUS', value: generateMachineStatus() },
