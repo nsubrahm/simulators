@@ -72,16 +72,19 @@ data: [
   { key: 'energyExp', value: generateEnergyValue(options.TZ, 1005) },
 ],
     alarms: [
-      { key: 'STATUS', value: generateMachineStatus() }
+      { key: 'STATUS', value: generateMachineStatus() },
+      { key: "COOLANT_LEVEL", value: ["LOW", "NORMAL", "HIGH"][Math.floor(Math.random() * 3)] },
+      { key: "OIL_LEVEL", value: ["LOW", "NORMAL", "HIGH"][Math.floor(Math.random() * 3)] }
     ]
   }
   return payload
 }
 
 function simulate(options) {
+  let payloadUrl = options.PAYLOAD_URL
   let simulationInterval = setInterval(() => {
     let payload = buildPayload({ TZ: options.TZ });
-    axios.post(options.PAYLOAD_URL, payload)
+    axios.post(payloadUrl, payload)
       .then((response) => {
         console.log(`Status: ${response.status}. Message: ${response.data.msg}`)
       })

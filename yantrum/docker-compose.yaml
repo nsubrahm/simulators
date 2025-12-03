@@ -1,0 +1,6 @@
+services:
+  simulator-rest:
+    container_name: restsim
+    image: nsubrahm/restsim:latest
+    env_file:
+      - rest.env
