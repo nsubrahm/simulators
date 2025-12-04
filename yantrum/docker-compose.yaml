@@ -1,6 +1,6 @@
 services:
   simulator-rest:
-    container_name: restsim
-    image: nsubrahm/restsim:latest
+    container_name: yantrum
+    image: nsubrahm/yantrum:latest
     env_file:
       - rest.env
